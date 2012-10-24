@@ -1,5 +1,14 @@
 <project name="UnicodeIntnl3WithSupe-su" app="Snap! 4.0, http://snap.berkeley.edu" version="1">
 <notes>
+2012-10-24
+Nathan recently developed a patch for CursorMorph that improves Snap editing. 
+Here, I show that one valuable result of that change is the ability to add Unicode
+to Project Notes. 
+Adding Unicode in TextWrangler because Firefox does not let me save delineated project source.
+
+けミ⻍⻍⿴ Wㇿれ⻌D
+I also tested both Safari 6 and Google Chrome 22.0... and found that neither
+would allow me to enter Unicode via the Character Viewer.
 2012-10-6
 Created blocks that contain Unicode characters in title text and default texts. So far, I haven't been able to use Unicode in parameter names.
 2012-10-4
