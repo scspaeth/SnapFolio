@@ -1,0 +1,175 @@
+<project name="UnicodeIntnl3WithSupe-su" app="Snap! 4.0, http://snap.berkeley.edu" version="1">
+<notes>
+2012-10-6
+Created blocks that contain Unicode characters in title text and default texts. So far, I haven't been able to use Unicode in parameter names.
+2012-10-4
+This is a test of Pseudo-Internationalization. Adds Japanese language characters from four sets (hiragana, katakana, romanji, and Kanji) to ensure that all can be correctly respresented in localizations for East Asian languages.
+</notes>
+<thumbnail>
+</thumbnail>
+<stage costume="0" threadsafe="false" id="1">
+<pentrails>
+</pentrails>
+<variables/>
+<costumes>
+<list id="3"/>
+</costumes>
+<sounds>
+<list id="4"/>
+</sounds>
+<blocks/>
+<scripts/>
+<sprites>
+<sprite name="Objektäöüß" x="69.76397137088827" y="-45.08162169702575" heading="0" scale="1" rotation="1" draggable="true" costume="0" color="80,80,80" id="8">
+<variables/>
+<costumes>
+<list id="10"/>
+</costumes>
+<sounds>
+<list id="11"/>
+</sounds>
+<blocks/>
+<scripts>
+<script x="77" y="251">
+<custom-block s="starInternational %n">
+<l>100</l>
+</custom-block>
+<block s="turn">
+<l>15</l>
+</block>
+<block s="doSayFor">
+<l>スベースです.</l>
+<l>2</l>
+</block>
+</script>
+<script x="46" y="33">
+<block s="receiveGo"/>
+<block s="down"/>
+<block s="gotoXY">
+<l>0</l>
+<l>0</l>
+</block>
+<block s="doRepeat">
+<l>10</l>
+<script>
+<block s="forward">
+<l>100</l>
+</block>
+<block s="turn">
+<l>155</l>
+</block>
+</script>
+</block>
+</script>
+<script x="260" y="57">
+<block s="clear"/>
+</script>
+<script x="10" y="200">
+<block s="doSetVar">
+<l>ナエア</l>
+<block var="testSupe-su"/>
+</block>
+</script>
+<script x="177" y="194">
+<block s="reportLetter">
+<l>3</l>
+<block var="ナエア"/>
+</block>
+</script>
+<script x="17" y="327">
+<block s="reportUnicodeAsLetter">
+<block s="reportUnicode">
+<l>¥</l>
+</block>
+</block>
+</script>
+<script x="26" y="357">
+<custom-block s="イエケ %txt">
+<l>this is a test</l>
+</custom-block>
+</script>
+<script x="26" y="379">
+<custom-block s="イエケ %txt">
+<l>ㇲエア</l>
+</custom-block>
+</script>
+<script x="17" y="448">
+<block s="reportUnicode">
+<block s="reportLetter">
+<l>12</l>
+<block var="ナエア"/>
+</block>
+</block>
+</script>
+<script x="22" y="406">
+<block s="doSetVar">
+<l>testSupe-su</l>
+<block var="ナエア"/>
+</block>
+</script>
+</scripts>
+</sprite>
+<sprite name="あいうえお" x="-150" y="-116" heading="328" scale="1" rotation="1" draggable="true" costume="0" color="0,52.020000000000046,130.05" id="57">
+<variables/>
+<costumes>
+<list id="59"/>
+</costumes>
+<sounds>
+<list id="60"/>
+</sounds>
+<blocks/>
+<scripts/>
+</sprite>
+<watcher var="ナエア" style="normal" x="10" y="10" color="243,118,29"/>
+<watcher var="testSupe-su" style="normal" x="10" y="29.000002000000002" color="243,118,29"/>
+</sprites>
+</stage>
+<blocks>
+<block-definition s="starInternational %'size'" type="command" category="motion">
+<inputs>
+<input type="%n">100</input>
+</inputs>
+<script>
+<block s="doRepeat">
+<l>5</l>
+<script>
+<block s="forward">
+<block var="size"/>
+</block>
+<block s="turn">
+<l>144</l>
+</block>
+</script>
+</block>
+</script>
+</block-definition>
+<block-definition s="イエア %'ケㇿナ'" type="reporter" category="variables">
+<inputs>
+<input type="%s"/>
+</inputs>
+<script>
+<block s="doReport">
+<block var="ケㇿナ"/>
+</block>
+</script>
+</block-definition>
+<block-definition s="イエケ %'text'" type="reporter" category="sensing">
+<inputs>
+<input type="%txt">ㇲエア</input>
+</inputs>
+<script>
+<block s="doReport">
+<block var="text"/>
+</block>
+</script>
+</block-definition>
+</blocks>
+<variables>
+<variable name="ナエア">
+<l>ナロア123ースペース　ストープ</l>
+</variable>
+<variable name="testSupe-su">
+<l>ナロア123ースペース　ストープ</l>
+</variable>
+</variables>
+</project>
