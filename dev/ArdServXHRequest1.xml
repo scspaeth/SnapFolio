@@ -1,0 +1,1106 @@
+<project name="ArdServXHRequest1" app="Snap! 4.0, http://snap.berkeley.edu" version="1">
+<notes>
+2012-10-23
+Redesigned the LED Circuit to give a single row of BBRWRWR lights.
+ Will support development of "Backseat Unicycle Rider" tool.
+ Was able quickly and easily add measurement of 1-D acceleration using RESTduino Sketch and Adafruit ADXL335.
+ Snap/Arduino/Server system is fast enough to capture reasonably fast oscillations of the accelerometer.
+
+2012-10-22
+Rewrote block Text to make the http://[ ] part clearer.
+Originally thought that this was primarily intended for learning to parse and support learning of CS concepts.
+ Now I see it from a perspective more important to me.
+ This name makes it clearer to me that the block has more possibilities.
+Added other targets for (http://[ ]) block that illustrate use as data sources rather than page display.
+ 
+2012-10-15
+XMLHttpRequest block makes the request for data clearer to me than (http:// [ ]) block.
+ Indicates that the request is made via http: or https: but that the responses can be much more than an html page. 
+See for more information:
+http://en.wikipedia.org/wiki/XMLHttpRequest
+</notes>
+<thumbnail>
+data:image/png;base64,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
+</thumbnail>
+<stage costume="0" threadsafe="false" id="1">
+<pentrails>
+data:image/png;base64,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
+</pentrails>
+<variables/>
+<costumes>
+<list id="3"/>
+</costumes>
+<sounds>
+<list id="4"/>
+</sounds>
+<blocks/>
+<scripts/>
+<sprites>
+<sprite name="Sprite" x="49.5" y="69" heading="90" scale="1" rotation="1" draggable="true" costume="0" color="80,80,80" id="8">
+<variables/>
+<costumes>
+<list id="10"/>
+</costumes>
+<sounds>
+<list id="11"/>
+</sounds>
+<blocks/>
+<scripts>
+<script x="97" y="40">
+<custom-block s="edit me for examples using tools"/>
+</script>
+<script x="76" y="202">
+<block s="doDeclareVariables">
+<list>
+<l>xPos</l>
+<l>ArdActive?</l>
+</list>
+</block>
+<block s="doSetVar">
+<l>xPos</l>
+<l>0</l>
+</block>
+<block s="doSetVar">
+<l>ArdActive?</l>
+<block s="reportTrue"/>
+</block>
+<block s="up"/>
+<block s="gotoXY">
+<block var="xPos"/>
+<l>0</l>
+</block>
+<block s="down"/>
+<block s="doRepeat">
+<l>100</l>
+<script>
+<block s="doIfElse">
+<block var="ArdActive?"/>
+<script>
+<block s="gotoXY">
+<block var="xPos"/>
+<block s="reportProduct">
+<custom-block s="XmlHttp:// %txt Req.">
+<l>192.168.1.200/A1</l>
+</custom-block>
+<l>0.4</l>
+</block>
+</block>
+</script>
+<script>
+<block s="gotoXY">
+<block var="xPos"/>
+<block s="reportProduct">
+<block s="reportMouseY"/>
+<l>0.5</l>
+</block>
+</block>
+</script>
+</block>
+<block s="doChangeVar">
+<l>xPos</l>
+<l>1</l>
+</block>
+</script>
+</block>
+</script>
+<script x="99" y="111">
+<block s="clear"/>
+</script>
+<comment x="60.000001" y="10" w="168" collapsed="true">Sketch: RESTduinoServoSCS.</comment>
+<script x="196" y="60">
+<block s="receiveKey">
+<l>
+<option>a</option>
+</l>
+</block>
+<block s="doIfElse">
+<l/>
+<script/>
+<script/>
+</block>
+</script>
+<script x="54" y="735.0000000000002">
+<block s="reportURL">
+<l>snap.berkeley.edu</l>
+</block>
+</script>
+<script x="46" y="523.0000000000001">
+<block s="reportURL">
+<l>
+snap.berkeley.edu/snapsource/help/contributing%20help%20screens%20to%20SNAP%21.txt
+</l>
+</block>
+</script>
+<script x="106" y="616.0000000000001">
+<block s="reportNewList">
+<list>
+<block s="reportNewList">
+<list>
+<l>-100</l>
+<l>0</l>
+</list>
+</block>
+<block s="reportNewList">
+<list>
+<l>0</l>
+<l>100</l>
+</list>
+</block>
+<block s="reportNewList">
+<list>
+<l>100</l>
+<l>-100</l>
+</list>
+</block>
+</list>
+</block>
+</script>
+<script x="38" y="591.0000000000001">
+<block s="reportStringSize">
+<block s="reportURL">
+<l>snap.berkeley.edu/snapsource/history.txt</l>
+</block>
+</block>
+</script>
+<script x="71.000001" y="696.0000020000002">
+<block s="reportURL">
+<l>snap.berkeley.edu/snapsource/</l>
+</block>
+</script>
+<script x="109.000001" y="563.0000020000001">
+<block s="reportURL">
+<l>snap.berkeley.edu/snapsource/snap.html</l>
+</block>
+</script>
+<script x="49" y="647.0000000000001">
+<block s="doSetVar">
+<l>initFileSize</l>
+<block s="reportStringSize">
+<block s="reportURL">
+<l>snap.berkeley.edu/snapsource/history.txt</l>
+</block>
+</block>
+</block>
+</script>
+<script x="38" y="762.0000000000002">
+<block s="doRepeat">
+<l>10</l>
+<script>
+<block s="doIf">
+<block s="reportGreaterThan">
+<block s="reportStringSize">
+<block s="reportURL">
+<l>snap.berkeley.edu/snapsource/history.txt</l>
+</block>
+</block>
+<block var="initFileSize"/>
+</block>
+<script>
+<block s="bubble">
+<l>Snap! Source Updated</l>
+</block>
+</script>
+</block>
+</script>
+</block>
+</script>
+<script x="250.000001" y="860.0000020000002">
+<block s="doWait">
+<block s="reportProduct">
+<l>60</l>
+<l>1</l>
+</block>
+</block>
+</script>
+<script x="206" y="166">
+<custom-block s="XmlHttp:// %txt Req.">
+<l>localhost/~sksrbabbitt-spaeth/Sites//A0</l>
+</custom-block>
+</script>
+<script x="56" y="146">
+<custom-block s="XmlHttp:// %txt Req.">
+<l>192.168.1.200/A1</l>
+</custom-block>
+</script>
+<script x="269.000001" y="262.000001">
+<block s="reportFalse"/>
+</script>
+<script x="269" y="120">
+<block s="doSayFor">
+<l>Hello!</l>
+<l>2</l>
+</block>
+</script>
+<script x="294.000001" y="462.000001">
+<block s="doWait">
+<l>0.2</l>
+</block>
+</script>
+<script x="76" y="178">
+<custom-block s="XmlHttp:// %txt Req.">
+<l>192.168.1.200/6/250</l>
+</custom-block>
+</script>
+<script x="10" y="43">
+<block s="doDeclareVariables">
+<list>
+<l>fadeFactor</l>
+</list>
+</block>
+<block s="doRepeat">
+<l>10</l>
+<script>
+<block s="doSetVar">
+<l>fadeFactor</l>
+<custom-block s="XmlHttp:// %txt Req.">
+<block s="reportJoinWords">
+<list>
+<l>192.168.1.200/6/</l>
+<l>0</l>
+</list>
+</block>
+</custom-block>
+</block>
+<block s="doWait">
+<l>1</l>
+</block>
+<block s="doSetVar">
+<l>fadeFactor</l>
+<custom-block s="XmlHttp:// %txt Req.">
+<block s="reportJoinWords">
+<list>
+<l>192.168.1.200/6/</l>
+<l>150</l>
+</list>
+</block>
+</custom-block>
+</block>
+<block s="doWait">
+<l>1</l>
+</block>
+</script>
+</block>
+</script>
+</scripts>
+</sprite>
+<watcher var="initFileSize" style="normal" x="5" y="5" color="243,118,29" hidden="true"/>
+</sprites>
+</stage>
+<blocks>
+<block-definition s="map %'function' over %'lists'" type="reporter" category="lists">
+<inputs>
+<input type="%repRing"/>
+<input type="%mult%l"/>
+</inputs>
+<script>
+<block s="doDeclareVariables">
+<list>
+<l>mapone</l>
+<l>mapmany</l>
+</list>
+</block>
+<block s="doSetVar">
+<l>mapone</l>
+<block s="reifyScript">
+<script>
+<block s="doIf">
+<custom-block s="empty? %l">
+<block var="data"/>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="reportNewList">
+<list/>
+</block>
+</block>
+</script>
+</block>
+<block s="doReport">
+<block s="reportCONS">
+<block s="evaluate">
+<block var="function"/>
+<list>
+<block s="reportListItem">
+<l>1</l>
+<block var="data"/>
+</block>
+</list>
+</block>
+<block s="evaluate">
+<block var="mapone"/>
+<list>
+<block s="reportCDR">
+<block var="data"/>
+</block>
+</list>
+</block>
+</block>
+</block>
+</script>
+<list>
+<l>data</l>
+</list>
+</block>
+</block>
+<block s="doSetVar">
+<l>mapmany</l>
+<block s="reifyScript">
+<script>
+<block s="doIf">
+<custom-block s="empty? %l">
+<block s="reportListItem">
+<l>1</l>
+<block var="data lists"/>
+</block>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="reportNewList">
+<list/>
+</block>
+</block>
+</script>
+</block>
+<block s="doReport">
+<block s="reportCONS">
+<block s="evaluate">
+<block var="function"/>
+<custom-block s="map %repRing over %mult%l">
+<block s="reifyReporter">
+<autolambda>
+<block s="reportListItem">
+<l>1</l>
+<l/>
+</block>
+</autolambda>
+<list/>
+</block>
+<list>
+<block var="data lists"/>
+</list>
+</custom-block>
+</block>
+<block s="evaluate">
+<block var="mapmany"/>
+<list>
+<custom-block s="map %repRing over %mult%l">
+<block s="reifyReporter">
+<autolambda>
+<block s="reportCDR">
+<l/>
+</block>
+</autolambda>
+<list/>
+</block>
+<list>
+<block var="data lists"/>
+</list>
+</custom-block>
+</list>
+</block>
+</block>
+</block>
+</script>
+<list>
+<l>data lists</l>
+</list>
+</block>
+</block>
+<block s="doIfElse">
+<custom-block s="empty? %l">
+<block s="reportCDR">
+<block var="lists"/>
+</block>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="evaluate">
+<block var="mapone"/>
+<list>
+<block s="reportListItem">
+<l>1</l>
+<block var="lists"/>
+</block>
+</list>
+</block>
+</block>
+</script>
+<script>
+<block s="doReport">
+<block s="evaluate">
+<block var="mapmany"/>
+<list>
+<block var="lists"/>
+</list>
+</block>
+</block>
+</script>
+</block>
+</script>
+</block-definition>
+<block-definition s="empty? %'data'" type="predicate" category="lists">
+<inputs>
+<input type="%l"/>
+</inputs>
+<script>
+<block s="doReport">
+<block s="reportEquals">
+<block var="data"/>
+<block s="reportNewList">
+<list/>
+</block>
+</block>
+</block>
+</script>
+</block-definition>
+<block-definition s="keep items such that %'pred' from %'data'" type="reporter" category="lists">
+<inputs>
+<input type="%predRing"/>
+<input type="%l"/>
+</inputs>
+<script>
+<block s="doIf">
+<custom-block s="empty? %l">
+<block var="data"/>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="reportNewList">
+<list/>
+</block>
+</block>
+</script>
+</block>
+<block s="doIfElse">
+<block s="evaluate">
+<block var="pred"/>
+<list>
+<block s="reportListItem">
+<l>1</l>
+<block var="data"/>
+</block>
+</list>
+</block>
+<script>
+<block s="doReport">
+<block s="reportCONS">
+<block s="reportListItem">
+<l>1</l>
+<block var="data"/>
+</block>
+<custom-block s="keep items such that %predRing from %l">
+<block var="pred"/>
+<block s="reportCDR">
+<block var="data"/>
+</block>
+</custom-block>
+</block>
+</block>
+</script>
+<script>
+<block s="doReport">
+<custom-block s="keep items such that %predRing from %l">
+<block var="pred"/>
+<block s="reportCDR">
+<block var="data"/>
+</block>
+</custom-block>
+</block>
+</script>
+</block>
+</script>
+</block-definition>
+<block-definition s="combine with %'function' items of %'data'" type="reporter" category="lists">
+<inputs>
+<input type="%repRing"/>
+<input type="%l"/>
+</inputs>
+<script>
+<block s="doIf">
+<custom-block s="empty? %l">
+<block s="reportCDR">
+<block var="data"/>
+</block>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="reportListItem">
+<l>1</l>
+<block var="data"/>
+</block>
+</block>
+</script>
+</block>
+<block s="doReport">
+<block s="evaluate">
+<block var="function"/>
+<list>
+<block s="reportListItem">
+<l>1</l>
+<block var="data"/>
+</block>
+<custom-block s="combine with %repRing items of %l">
+<block var="function"/>
+<block s="reportCDR">
+<block var="data"/>
+</block>
+</custom-block>
+</list>
+</block>
+</block>
+</script>
+</block-definition>
+<block-definition s="if %'test' then %'true' else %'false'" type="reporter" category="control">
+<inputs>
+<input type="%b"/>
+<input type="%anyUE"/>
+<input type="%anyUE"/>
+</inputs>
+<script>
+<block s="doIfElse">
+<block var="test"/>
+<script>
+<block s="doReport">
+<block s="evaluate">
+<block var="true"/>
+<list/>
+</block>
+</block>
+</script>
+<script>
+<block s="doReport">
+<block s="evaluate">
+<block var="false"/>
+<list/>
+</block>
+</block>
+</script>
+</block>
+</script>
+</block-definition>
+<block-definition s="for %'i' = %'start' to %'end' %'action'" type="command" category="control">
+<inputs>
+<input type="%upvar"/>
+<input type="%n">1</input>
+<input type="%n">10</input>
+<input type="%cs"/>
+</inputs>
+<script>
+<block s="doDeclareVariables">
+<list>
+<l>step</l>
+<l>tester</l>
+</list>
+</block>
+<block s="doIfElse">
+<block s="reportGreaterThan">
+<block var="start"/>
+<block var="end"/>
+</block>
+<script>
+<block s="doSetVar">
+<l>step</l>
+<l>-1</l>
+</block>
+<block s="doSetVar">
+<l>tester</l>
+<block s="reifyReporter">
+<autolambda>
+<block s="reportLessThan">
+<block var="i"/>
+<block var="end"/>
+</block>
+</autolambda>
+<list/>
+</block>
+</block>
+</script>
+<script>
+<block s="doSetVar">
+<l>step</l>
+<l>1</l>
+</block>
+<block s="doSetVar">
+<l>tester</l>
+<block s="reifyReporter">
+<autolambda>
+<block s="reportGreaterThan">
+<block var="i"/>
+<block var="end"/>
+</block>
+</autolambda>
+<list/>
+</block>
+</block>
+</script>
+</block>
+<block s="doSetVar">
+<l>i</l>
+<block var="start"/>
+</block>
+<block s="doUntil">
+<block s="evaluate">
+<block var="tester"/>
+<list/>
+</block>
+<script>
+<block s="doRun">
+<block var="action"/>
+<list/>
+</block>
+<block s="doChangeVar">
+<l>i</l>
+<block var="step"/>
+</block>
+</script>
+</block>
+</script>
+</block-definition>
+<block-definition s="join words %'words'" type="reporter" category="operators">
+<inputs>
+<input type="%mult%txt"/>
+</inputs>
+<script>
+<block s="doIf">
+<custom-block s="empty? %l">
+<block s="reportCDR">
+<block var="words"/>
+</block>
+</custom-block>
+<script>
+<block s="doReport">
+<block s="reportListItem">
+<l>1</l>
+<block var="words"/>
+</block>
+</block>
+</script>
+</block>
+<block s="doReport">
+<block s="reportJoinWords">
+<list>
+<block s="reportListItem">
+<l>1</l>
+<block var="words"/>
+</block>
+<block s="reportJoinWords">
+<list>
+<l/>
+<block s="evaluate">
+<block s="reifyReporter">
+<autolambda>
+<custom-block s="join words %mult%txt">
+<block s="reportCDR">
+<block var="words"/>
+</block>
+</custom-block>
+</autolambda>
+<list/>
+</block>
+<list/>
+</block>
+</list>
+</block>
+</list>
+</block>
+</block>
+</script>
+</block-definition>
+<block-definition s="list->sentence %'data'" type="reporter" category="operators">
+<inputs>
+<input type="%l"/>
+</inputs>
+<script>
+<block s="doReport">
+<custom-block s="combine with %repRing items of %l">
+<block s="reifyReporter">
+<autolambda>
+<custom-block s="join words %mult%txt">
+<list>
+<l/>
+<l/>
+</list>
+</custom-block>
+</autolambda>
+<list/>
+</block>
+<block var="data"/>
+</custom-block>
+</block>
+</script>
+</block-definition>
+<block-definition s="sentence->list %'text'" type="reporter" category="operators">
+<inputs>
+<input type="%txt"/>
+</inputs>
+<script>
+<block s="doDeclareVariables">
+<list>
+<l>result</l>
+<l>thisword</l>
+<l>emptyword</l>
+</list>
+</block>
+<block s="doSetVar">
+<l>result</l>
+<block s="reportNewList">
+<list/>
+</block>
+</block>
+<block s="doSetVar">
+<l>thisword</l>
+<l/>
+</block>
+<block s="doSetVar">
+<l>emptyword</l>
+<l/>
+</block>
+<custom-block s="for %upvar = %n to %n %cs">
+<l>i</l>
+<l>1</l>
+<block s="reportStringSize">
+<block var="text"/>
+</block>
+<script>
+<block s="doIfElse">
+<block s="reportEquals">
+<block s="reportLetter">
+<block var="i"/>
+<block var="text"/>
+</block>
+<l/>
+</block>
+<script>
+<block s="doIf">
+<block s="reportNot">
+<block s="reportEquals">
+<block var="thisword"/>
+<block var="emptyword"/>
+</block>
+</block>
+<script>
+<block s="doAddToList">
+<block var="thisword"/>
+<block var="result"/>
+</block>
+<block s="doSetVar">
+<l>thisword</l>
+<block var="emptyword"/>
+</block>
+</script>
+</block>
+</script>
+<script>
+<block s="doSetVar">
+<l>thisword</l>
+<block s="reportJoinWords">
+<list>
+<block var="thisword"/>
+<block s="reportLetter">
+<block var="i"/>
+<block var="text"/>
+</block>
+</list>
+</block>
+</block>
+</script>
+</block>
+</script>
+</custom-block>
+<block s="doIf">
+<block s="reportNot">
+<block s="reportEquals">
+<block var="thisword"/>
+<block var="emptyword"/>
+</block>
+</block>
+<script>
+<block s="doAddToList">
+<block var="thisword"/>
+<block var="result"/>
+</block>
+</script>
+</block>
+<block s="doReport">
+<block var="result"/>
+</block>
+</script>
+</block-definition>
+<block-definition s="catch %'tag' %'action'" type="command" category="control">
+<inputs>
+<input type="%upvar"/>
+<input type="%cs"/>
+</inputs>
+<script>
+<block s="doCallCC">
+<block s="reifyScript">
+<script>
+<block s="doSetVar">
+<l>tag</l>
+<block var="cont"/>
+</block>
+<block s="doRun">
+<block var="action"/>
+<list/>
+</block>
+</script>
+<list>
+<l>cont</l>
+</list>
+</block>
+</block>
+</script>
+</block-definition>
+<block-definition s="throw %'cont'" type="command" category="control">
+<inputs>
+<input type="%s">catchtag</input>
+</inputs>
+<script>
+<block s="doRun">
+<block var="cont"/>
+<list/>
+</block>
+</script>
+</block-definition>
+<block-definition s="catch %'tag' %'value'" type="reporter" category="control">
+<inputs>
+<input type="%upvar"/>
+<input type="%anyUE"/>
+</inputs>
+<script>
+<block s="doCallCC">
+<block s="reifyScript">
+<script>
+<block s="doSetVar">
+<l>tag</l>
+<block var="cont"/>
+</block>
+<block s="doReport">
+<block s="evaluate">
+<block var="value"/>
+<list/>
+</block>
+</block>
+</script>
+<list>
+<l>cont</l>
+</list>
+</block>
+</block>
+</script>
+</block-definition>
+<block-definition s="throw %'tag' %'value'" type="command" category="control">
+<inputs>
+<input type="%s">catchtag</input>
+<input type="%s"/>
+</inputs>
+<script>
+<block s="doRun">
+<block var="tag"/>
+<list>
+<block var="value"/>
+</list>
+</block>
+</script>
+</block-definition>
+<block-definition s="do-nothing-with %'x'" type="command" category="control">
+<inputs>
+<input type="%s"/>
+</inputs>
+</block-definition>
+<block-definition s="edit me for examples using tools" type="command" category="other">
+<inputs/>
+<script>
+<custom-block s="do-nothing-with %s">
+<custom-block s="map %repRing over %mult%l">
+<block s="reifyReporter">
+<autolambda>
+<block s="reportProduct">
+<l/>
+<l/>
+</block>
+</autolambda>
+<list/>
+</block>
+<list>
+<block s="reportNewList">
+<list>
+<l>7</l>
+<l>8</l>
+<l>1</l>
+</list>
+</block>
+</list>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="map %repRing over %mult%l">
+<block s="reifyReporter">
+<autolambda>
+<block s="reportProduct">
+<l/>
+<l/>
+</block>
+</autolambda>
+<list/>
+</block>
+<list>
+<block s="reportNewList">
+<list>
+<l>7</l>
+<l>8</l>
+<l>1</l>
+</list>
+</block>
+<block s="reportNewList">
+<list>
+<l>10</l>
+<l>20</l>
+<l>30</l>
+</list>
+</block>
+</list>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="keep items such that %predRing from %l">
+<block s="reifyPredicate">
+<autolambda>
+<block s="reportIsA">
+<l/>
+<l>
+<option>number</option>
+</l>
+</block>
+</autolambda>
+<list/>
+</block>
+<block s="reportNewList">
+<list>
+<l>the</l>
+<l>1</l>
+<l>after</l>
+<l>909</l>
+</list>
+</block>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="combine with %repRing items of %l">
+<block s="reifyReporter">
+<autolambda>
+<block s="reportProduct">
+<l/>
+<l/>
+</block>
+</autolambda>
+<list/>
+</block>
+<block s="reportNewList">
+<list>
+<l>7</l>
+<l>8</l>
+<l>1</l>
+</list>
+</block>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="if %b then %anyUE else %anyUE">
+<block s="reportEquals">
+<l>Yakko</l>
+<l>Wakko</l>
+</block>
+<l>yes</l>
+<l>no</l>
+</custom-block>
+</custom-block>
+<custom-block s="catch %upvar %cs">
+<l>tag</l>
+<script>
+<custom-block s="for %upvar = %n to %n %cs">
+<l>i</l>
+<l>5</l>
+<l>3</l>
+<script>
+<custom-block s="for %upvar = %n to %n %cs">
+<l>k</l>
+<l>2</l>
+<l>4</l>
+<script>
+<block s="doIf">
+<block s="reportEquals">
+<block var="i"/>
+<block var="k"/>
+</block>
+<script>
+<custom-block s="throw %s">
+<block var="tag"/>
+</custom-block>
+</script>
+</block>
+<block s="doSayFor">
+<block s="reportJoinWords">
+<list>
+<block var="i"/>
+<block var="k"/>
+</list>
+</block>
+<l>1</l>
+</block>
+</script>
+</custom-block>
+</script>
+</custom-block>
+</script>
+</custom-block>
+<block s="doSayFor">
+<l>Hello!</l>
+<l>2</l>
+</block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="join words %mult%txt">
+<list>
+<l>Yakko</l>
+<l>Wakko</l>
+<l>Dot</l>
+</list>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="list->sentence %l">
+<block s="reportNewList">
+<list>
+<l>Yakko</l>
+<l>Wakko</l>
+<l>Dot</l>
+</list>
+</block>
+</custom-block>
+</custom-block>
+<custom-block s="do-nothing-with %s">
+<custom-block s="sentence->list %txt">
+<l>She Loves You</l>
+</custom-block>
+</custom-block>
+</script>
+</block-definition>
+<block-definition s="XmlHttp:// %'ip' Req." type="reporter" category="sensing">
+<inputs>
+<input type="%txt">192.168.1.200/A0</input>
+</inputs>
+<script>
+<block s="doReport">
+<block s="reportURL">
+<block var="ip"/>
+</block>
+</block>
+</script>
+</block-definition>
+</blocks>
+<variables>
+<variable name="initFileSize">
+<l>28830</l>
+</variable>
+</variables>
+</project>

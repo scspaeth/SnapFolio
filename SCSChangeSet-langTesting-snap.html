@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Snap! Alpha:</title>
+        <link rel="shortcut icon" href="http://snap.berkeley.edu/fav3.gif" type="image/gif">
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/morphic.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/widgets.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/blocks.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/threads.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/objects.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/gui.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/lists.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/byob.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/xml.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/store.js"></script>
+		<script type="text/javascript" src="http://snap.berkeley.edu/snapsource/locale.js"></script>
+		<script type="text/javascript" charset="utf-8" src="http://snap.berkeley.edu/snapsource/lang-de.js"></script>
+		<script type="text/javascript">			
+			var world;
+			window.onload = function () {
+				world = new WorldMorph(document.getElementById('world'), false); // true:fill window, false:element in a page
+				new IDE_Morph().openIn(world);
+				setInterval(loop, 1);
+			};
+			function loop() {
+				world.doOneCycle();
+			} 
+		</script>
+	</head>
+	<body style="background-color: #F0F0F0; margin: 20;">
+        <h1>Snap! Alpha testing Internationalization support</h1>
+        <h2>Testing for 日本語　(Japanese language) support: </h2>
+        <h3><a href="http://scspaeth.wordpress.com" target="_blank">Stephen Spaeth</a>, Topsham, Maine</h3>
+        <h4>Help Development</h4>
+        <p>Jens posted about the need to develop help 
+            <a href="http://snap.berkeley.edu/snapsource/help/ target="_blank">
+            Contributing to help.</a> 
+            I offered the Control/Launch-Fork.xml as an example. 
+            <a href="http://localhost/~sksrbabbitt-spaeth/snap-help/SCSChangeSet-langTesting-snap.html#open:http://localhost/~sksrbabbitt-spaeth/snap-help/Control/Launch-Fork2.xml" target="_blank"-->
+                Control/Launch-Fork1.xml</a>. 
+                This illustrates the potential. 
+                Using this venue to improve understanding and skill with version control management.
+        </p>
+        <h4>Language translation testing</h4>
+        <p>Jens recently announced progress on internationalization of Snap! 
+        He started with an obvious first choice: Deutsch (German), his native language. 
+        In comments in the source code, he warns against full-scale translations 
+        because the code for supporting localizations is still in active development. 
+        </p>
+        <p>The change from English to Deutsch consists primarily of string and 
+        special single character substitutions. 
+        These only require Western (ISO-8859-1) encoding.
+        Test that by switching between Western (ISO) and Unicode (UTF-8) encodings.
+        For Jens' lang-de.js, that difference in encodings does not affect display.
+        </p>
+        <p>But for many languages, the changes are more significant. 
+        For East Asian languages (Chinese, Japanese, and Korean CJK), 
+        the changes are more substantial and require Unicode.
+        To see this, watch the Japanese text in the body of this page become illegible 
+        on the change from Unicode (UTF-8) to Western (ISO-8859-1). 
+        In this work, I have chosen Japanese for Alpha testing of localizations 
+        that require Unicode.</p>
+		<canvas id="world" tabindex="1" width="950" height="620" style="position: relative;"> <!-- relative exposes text below -->
+			<p>Your browser doesn't support canvas.</p>
+		</canvas>
+        <h2>Details of the testing approach and results</h2>
+        <h3>Background</h3>
+        <p>Microsoft introduced the concept of Pseudo Translation to 
+        support internationalization of its software. 
+        The most important feature here is substitution of unicode strings
+        that both test the program's support for other character sets, 
+        yet are legible in English so that testers don't need to know a second language.</p>
+        <h3>日本語 (Japanese language)</h3>
+        <p>The Japanese language uses four different character sets:
+        <ul>
+        <li>Hiragana: phonetic "alphabet" for words of Japanese origin, e. g. です</li>
+        <li>Kanji: ideographs drawn primarily from Chinese written language, e. g.　日本 Japan.</li>
+        <li>Katakana: phonetic representation of non-Japanese origin, 
+        	e. g. スペース "space" as in space-bar on a keyboard.</li>
+        <li>Romaji- the Roman alphabet, e. g. ａｂｃ．．．ｘｙｚ．</li>
+        </ul>
+        </p>
+        <h3>Extend Pseudo Translation to include all Japanese character sets</h3>
+        <p>Devise representative substitutions from Japanese character sets to 
+        test program function but still be legible in English language. 
+        One simple approach is to substitute Romaji characters for English
+        but that approach does not cover all character sets.
+        A judicious choice of character look-a-likes from Kanji, hiragana and katakana and
+        fill in with Romaji for letters in in the Roman alphabet for which there
+        are no appropriate substitutes.</p>		
+    </body>
+</html>
