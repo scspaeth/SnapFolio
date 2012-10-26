@@ -1,0 +1,94 @@
+<project name="dev-SnapXMLHttpRequestSampler.xml" app="Snap! 4.0, http://snap.berkeley.edu" version="1">
+<notes>
+2012-10-26
+Tested in Chrome and Safari.
+In Chrome, the ill-formatted address throws a cross-browser error.
+In Safari, only one of these blocks works, the one that gets the Apache default index page for ./SnapFolio/dev/ 
+In Firefox, it reads similarly to Chrome except that it hangs up on the poorly formed address and doesn't quit trying to load.
+2012-10-26
+Examples of (http://[ ]) block reports for range of file types that the underlying XMLHttpRequest can support:
+html
+xml
+xml fragment
+JSON
+JSON-p
+text
+text-CommaSeparatedRecord
+</notes>
+<thumbnail>
+</thumbnail>
+<stage costume="0" threadsafe="false" id="1">
+<pentrails>
+</pentrails>
+<variables/>
+<costumes>
+<list id="3"/>
+</costumes>
+<sounds>
+<list id="4"/>
+</sounds>
+<blocks/>
+<scripts/>
+<sprites>
+<sprite name="Sprite" idx="1" x="0" y="0" heading="90" scale="1" rotation="1" draggable="true" costume="0" color="80,80,80" id="8">
+<variables/>
+<costumes>
+<list id="10"/>
+</costumes>
+<sounds>
+<list id="11"/>
+</sounds>
+<blocks/>
+<scripts>
+<script x="16" y="88">
+<block s="reportURL">
+<l>
+localhost/~sksrbabbitt-spaeth/SnapFolio/SnapCommaSepRecord.txt
+</l>
+</block>
+</script>
+<script x="11" y="118">
+<block s="reportURL">
+<l>
+localhost/~sksrbabbitt-spaeth/SnapFolio/SimpleHtmlPage.html
+</l>
+</block>
+</script>
+<script x="51" y="153">
+<block s="reportURL">
+<l>SimpleHtmlPage.html</l>
+</block>
+</script>
+<script x="10" y="222">
+<block s="reportURL">
+<l>
+localhost/~sksrbabbitt-spaeth/SnapFolio/dev/ArdServXHRequest1.xml
+</l>
+</block>
+</script>
+<script x="13" y="261">
+<block s="reportURL">
+<l>localhost/~sksrbabbitt-spaeth/SnapFolio/dev/</l>
+</block>
+</script>
+<script x="27" y="298">
+<block s="reportURL">
+<l>
+localhost/~sksrbabbitt-spaeth/SnapFolio/dev/UnicodeIntnl3WithSupe-su.xml
+</l>
+</block>
+</script>
+<script x="15" y="331">
+<block s="reportURL">
+<l>
+localhost/~sksrbabbitt-spaeth/SnapFolio/dev/SnapHttpReportBlock.xml
+</l>
+</block>
+</script>
+</scripts>
+</sprite>
+</sprites>
+</stage>
+<blocks/>
+<variables/>
+</project>

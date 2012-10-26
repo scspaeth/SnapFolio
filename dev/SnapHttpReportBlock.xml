@@ -1,0 +1,14 @@
+<blocks app="Snap! 4.0, http://snap.berkeley.edu" version="1">
+	<block-definition s="XmlHttp:// %'ip' Req." type="reporter" category="sensing">
+		<inputs>
+			<input type="%txt">192.168.1.200/A0</input>
+		</inputs>
+		<script>
+			<block s="doReport">
+				<block s="reportURL">
+					<block var="ip"/>
+				</block>
+			</block>
+		</script>
+	</block-definition>
+</blocks>
